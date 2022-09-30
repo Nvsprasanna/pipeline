@@ -9,6 +9,14 @@ pipeline {
                }
     
     stages {
+        stage('checkout Stage') {
+
+            steps {
+            checkout([$class: 'GitSCM', branches: [[name: '*/$MYSOURCE_BRANCH']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Nvsprasanna/Sep22-code.git']]])
+                sh '''ls -la'''
+
+            }
+        }
          stage('Artifcat check') {
             steps {
                 echo 'we are in  statge'
