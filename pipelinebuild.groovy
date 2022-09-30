@@ -15,7 +15,7 @@ pipeline {
                 echo 'we are in artifact statge'
                 sh ''' aws s3 ls s3://nvsbucket/$MYJOB_NAME/$MYSOURCE_BRANCH/$MYBUILD_NUMBER/ '''
                 echo 'artificat change finished'
-                echo '$?'
+                echo '#?'
             }
         }
         stage('Deployment step') {
