@@ -7,13 +7,16 @@ pipeline {
         stage('checkout Stage') {
             steps {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Nvsprasanna/Sep22-code.git']]])
+                sh '''ls -la'''
 
             }
         }
         stage('Build stage') {
             steps {
                 echo 'we are in builld statge'
-                sh ''' mvn clean package '''
+                sh ''' mvn clean package 
+                ls -la target/ '''
+
             }
         }
         stage('Upload stage') {
