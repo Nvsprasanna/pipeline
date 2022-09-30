@@ -13,16 +13,19 @@ pipeline {
         stage('Build stage') {
             steps {
                 echo 'we are in builld statge'
+                sh ''' mvn clean package '''
             }
         }
         stage('Upload stage') {
             steps {
                 echo 'we are in upload statge'
+                sh ''' aws s3 cp target/hello-*.war s3://nvsbucket/$JOB_NAME/BRANCH/$BUILD_NUMBER/ '''
             }
         }
         stage('Artifcat check') {
             steps {
                 echo 'we are in  statge'
+                sh ''' aws s3 ls '''
             }
         }
     }
