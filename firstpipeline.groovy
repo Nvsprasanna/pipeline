@@ -6,7 +6,8 @@ pipeline {
     stages {
         stage('checkout Stage') {
             steps {
-                echo 'we are in checkout statge'
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Nvsprasanna/pipeline.git']]])
+
             }
         }
         stage('Build stage') {
