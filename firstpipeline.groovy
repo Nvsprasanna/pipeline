@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('checkout Stage') {
             steps {
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Nvsprasanna/Sep22-code.git']]])
+            checkout([$class: 'GitSCM', branches: [[name: '*/$SOURCE_BRANCH']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Nvsprasanna/Sep22-code.git']]])
                 sh '''ls -la'''
 
             }
@@ -22,13 +22,13 @@ pipeline {
         stage('Upload stage') {
             steps {
                 echo 'we are in upload statge'
-                sh ''' aws s3 cp target/hello-*.war s3://nvsbucket/$JOB_NAME/BRANCH/$BUILD_NUMBER/ '''
+                sh ''' aws s3 cp target/hello-*.war s3://nvsbucket/$JOB_NAME/$SOURCE_BRANCH/$BUILD_NUMBER/ '''
             }
         }
         stage('Artifcat check') {
             steps {
                 echo 'we are in  statge'
-                sh ''' aws s3 ls '''
+                sh ''' aws s3 ls s3://nvsbucket/$JOB_NAME/$SOURCE_BRANCH/$BUILD_NUMBER '''
             }
         }
     }
