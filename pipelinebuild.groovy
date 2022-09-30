@@ -9,18 +9,11 @@ pipeline {
                }
     
     stages {
-        stage('checkout Stage') {
 
-            steps {
-            checkout([$class: 'GitSCM', branches: [[name: '*/$MYSOURCE_BRANCH']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/Nvsprasanna/Sep22-code.git']]])
-                sh '''ls -la'''
-
-            }
-        }
          stage('Artifcat check') {
             steps {
                 echo 'we are in  statge'
-                sh ''' aws s3 ls s3://nvsbucket/$JOB_NAME/$SOURCE_BRANCH/$BUILD_NUMBER/ '''
+                sh ''' aws s3 ls s3://nvsbucket/$JOB_NAME/$MYSOURCE_BRANCH/$BUILD_NUMBER/ '''
             }
         }
         stage('Deployment step') {
