@@ -1,4 +1,4 @@
-Firstpipeline.groovy
+//Declarative pipeline
 
 pipeline {
     agent any
