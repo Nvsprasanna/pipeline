@@ -28,7 +28,7 @@ pipeline {
         stage('Artifcat check') {
             steps {
                 echo 'we are in  statge'
-                sh ''' aws s3 ls s3://nvsbucket/$JOB_NAME/$SOURCE_BRANCH/$BUILD_NUMBER '''
+                sh ''' aws s3 ls s3://nvsbucket/$JOB_NAME/$SOURCE_BRANCH/$BUILD_NUMBER/ '''
             }
         }
     }
