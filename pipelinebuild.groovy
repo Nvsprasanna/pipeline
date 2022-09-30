@@ -12,8 +12,10 @@ pipeline {
 
          stage('Artifcat check') {
             steps {
-                echo 'we are in  statge'
-                sh ''' aws s3 ls s3://nvsbucket/$JOB_NAME/$MYSOURCE_BRANCH/$BUILD_NUMBER/ '''
+                echo 'we are in artifact statge'
+                sh ''' aws s3 ls s3://nvsbucket/$MYJOB_NAME/$MYSOURCE_BRANCH/$MYBUILD_NUMBER/ '''
+                echo 'artificat change finished'
+                echo '$?'
             }
         }
         stage('Deployment step') {
