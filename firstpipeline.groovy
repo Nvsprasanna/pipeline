@@ -4,7 +4,8 @@ pipeline {
     agent any
     parameters {  string(name: 'MYJOB_NAME', defaultValue: 'firstpipeline', description: '')
                   string(name: 'MYSOURCE_BRANCH', defaultValue: 'master', description: '')
-                  string(name: 'MYBUILD_NUMBER', defaultValue: '10', description: '') 
+                  string(name: 'MYBUILD_NUMBER', defaultValue: '10', description: '')
+                  string(name: 'ip', defaultValue: '', description: 'Enter IP Value') 
                }
     
     stages {
@@ -39,6 +40,8 @@ pipeline {
             steps {
                 echo 'we are in  deploymnet step'
                 sh ''' echo "$MYJOB_NAME, $MYSOURCE_BRANCH, $MYBUILD_NUMBER"
+                aws s3 cp s3://nvsbucket/$MYJOB_NAME/$MYSOURCE_BRANCH/$MYBUILD_NUMBER/ .
+                scp -o StrictHostKeyChecking=no -i /tmp/Linuxserver.pem hello-$MYBUILD_NUMBER.war ec2-user@$ip:/var/lib/tomcat/webapps
                 '''
             }
         }
