@@ -5,7 +5,7 @@ pipeline {
     parameters {  string(name: 'MYJOB_NAME', defaultValue: 'firstpipeline', description: '')
                   string(name: 'MYSOURCE_BRANCH', defaultValue: 'master', description: '')
                   string(name: 'MYBUILD_NUMBER', defaultValue: '10', description: '')
-                  choice(name: 'myip', choices: ['QA,3.85.91.150','Dev,3.95.229.196', 'Prod,18.234.225.172'], description: 'select IP Value') 
+                  choice(name: 'myip', choices: ['QA,172.31.92.239','Dev,172.31.88.212', 'Prod,172.31.80.36'], description: 'select IP Value') 
                }
     
     stages {
