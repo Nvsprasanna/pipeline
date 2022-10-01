@@ -41,7 +41,7 @@ pipeline {
     build job: 'pipeline_deploy', parameters: [[$class: 'StringParameterValue', name: 'MYJOB_NAME', value: "${JOB_NAME}"],
                                               [$class: 'StringParameterValue', name: 'MYSOURCE_BRANCH', value: "${MYSOURCE_BRANCH}"],
                                               [$class: 'StringParameterValue', name: 'MYBUILD_NUMBER', value: "${BUILD_NUMBER}"],
-                                              [$class: 'ExtendedChoiceParameterValue', name: 'myip', value: "${myip}"]
+                                               choice(name: 'Choicemyip', value: "${myip}")
                                               ]
                        }
 }
