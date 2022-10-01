@@ -27,7 +27,7 @@ pipeline {
         stage('Upload stage') {
             steps {
                 echo 'we are in upload statge'
-                sh ''' aws s3 cp target/hello-*.war s3://nvsbucket/$JOB_NAME/$SOURCE_BRANCH/$BUILD_NUMBER/ '''
+                sh ''' aws s3 cp target/hello-*.war s3://nvsbucket/$JOB_NAME/$MYSOURCE_BRANCH/$BUILD_NUMBER/ '''
             }
         }
         stage('Artifcat check') {
