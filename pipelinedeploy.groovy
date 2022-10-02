@@ -15,7 +15,7 @@ pipeline {
                 message "do you want to proceed with deploymnet"
                 }
                 steps {
-                    sh 'echo "Deploying to server'
+                    sh 'echo "Deploying to server"'
                 }
          }
          stage('Artifcat check') {
