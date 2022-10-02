@@ -10,6 +10,14 @@ pipeline {
     
     stages {
 
+         stage('Ask Deploy'){
+            input{
+                message "do you want to proceed with deploymnet"
+                }
+                steps {
+                    sh 'echo "Deploying to server'
+                }
+         }
          stage('Artifcat check') {
             steps {
                 echo 'we are in artifact statge'
